@@ -1,0 +1,3 @@
+rootProject.name = 'yaffe-mco152-22'
+include 'quadraticEquation'
+
