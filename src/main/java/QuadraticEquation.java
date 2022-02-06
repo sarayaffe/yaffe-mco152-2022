@@ -13,10 +13,10 @@ public class QuadraticEquation {
     }
 
     public double[] getX() {
-        double discriminant = b * b - 4 * a * c;
+        double discriminant = Math.sqrt(b * b - 4 * a * c);
 
-        return new double[]{(-b + Math.sqrt(discriminant)) / (2 * a),
-                (-b - Math.sqrt(discriminant)) / (2 * a)};
+        return new double[]{(-b + discriminant) / (2 * a),
+                (-b - discriminant) / (2 * a)};
     }
 
 
