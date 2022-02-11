@@ -10,6 +10,9 @@ import java.util.Stack;
 public class RPNExpression {
 
     public static final String SYNTAX_ERROR = "Syntax Error";
+    public static final String NO_EXPRESSION_GIVEN = "no expression given";
+    public static final String EXTRA_JUNK_IGNORED = "extra junk ignored";
+    public static final String CANNOT_DIVIDE_BY_ZERO = "cannot divide by zero";
 
     private String expression;
     private Stack<Double> stackExpression;
@@ -26,7 +29,7 @@ public class RPNExpression {
     public String evaluate() {
 
         if (expression.length() == 0) {
-            return "no expression given";
+            return NO_EXPRESSION_GIVEN;
         } else {
             String[] splitExpression = expression.split("\\s+");
             for (String s : splitExpression) {
@@ -48,7 +51,7 @@ public class RPNExpression {
                                 if (num1 != 0) {
                                     newNum = num2 / num1;
                                 } else {
-                                    return "cannot divide by zero";
+                                    return CANNOT_DIVIDE_BY_ZERO;
                                 }
                                 break;
                             case "*":
@@ -75,7 +78,7 @@ public class RPNExpression {
             }
             String result = String.format("%.2f", stackExpression.pop());
             if (!stackExpression.empty()) {
-                return result + "\nextra junk ignored";
+                return result + "\n" + EXTRA_JUNK_IGNORED;
             } else {
                 return result;
             }

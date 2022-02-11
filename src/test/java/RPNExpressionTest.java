@@ -29,19 +29,28 @@ class RPNExpressionTest {
     }
 
     @Test
-    public void evaluateError() {
+    public void evaluateSyntaxError1() {
         //given
         RPNExpression rpn = new RPNExpression("5 8 + + 3 2.5 * +");
-        RPNExpression rpn2 = new RPNExpression("pi 5 +");
 
         //when
         String result = rpn.evaluate();
-        String result2 = rpn2.evaluate();
 
         //then
         assertEquals("Syntax Error", result);
-        assertEquals("Syntax Error", result2);
 
+    }
+
+    @Test
+    public void evaluateSyntaxError2() {
+        //given
+        RPNExpression rpn = new RPNExpression("pi 5 +");
+
+        //when
+        String result = rpn.evaluate();
+
+        //then
+        assertEquals("Syntax Error", result);
     }
 
     @Test
