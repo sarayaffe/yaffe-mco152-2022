@@ -11,7 +11,7 @@ public class RPNExpression {
 
     public static final String SYNTAX_ERROR = "Syntax Error";
     public static final String NO_EXPRESSION_GIVEN = "no expression given";
-    public static final String EXTRA_JUNK_IGNORED = "extra junk ignored";
+    public static final String EXTRA_JUNK_IGNORED = "\nextra junk ignored";
     public static final String CANNOT_DIVIDE_BY_ZERO = "cannot divide by zero";
 
     private String expression;
@@ -78,7 +78,7 @@ public class RPNExpression {
             }
             String result = String.format("%.2f", stackExpression.pop());
             if (!stackExpression.empty()) {
-                return result + "\n" + EXTRA_JUNK_IGNORED;
+                return result + EXTRA_JUNK_IGNORED;
             } else {
                 return result;
             }

@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class RPNExpressionTest {
@@ -37,7 +36,7 @@ class RPNExpressionTest {
         String result = rpn.evaluate();
 
         //then
-        assertEquals("Syntax Error", result);
+        assertEquals(RPNExpression.SYNTAX_ERROR, result);
 
     }
 
@@ -50,7 +49,7 @@ class RPNExpressionTest {
         String result = rpn.evaluate();
 
         //then
-        assertEquals("Syntax Error", result);
+        assertEquals(RPNExpression.SYNTAX_ERROR, result);
     }
 
     @Test
@@ -62,7 +61,7 @@ class RPNExpressionTest {
         String result = rpn.evaluate();
 
         //then
-        assertEquals("cannot divide by zero", result);
+        assertEquals(RPNExpression.CANNOT_DIVIDE_BY_ZERO, result);
     }
 
     @Test
@@ -74,6 +73,6 @@ class RPNExpressionTest {
         String result = rpn.evaluate();
 
         //then
-        assertEquals("2.00\nextra junk ignored", result);
+        assertEquals("2.00" + RPNExpression.EXTRA_JUNK_IGNORED, result);
     }
 }
