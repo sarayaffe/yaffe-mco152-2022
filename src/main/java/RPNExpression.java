@@ -9,6 +9,8 @@ import java.util.Stack;
  */
 public class RPNExpression {
 
+    public static final String SYNTAX_ERROR = "Syntax Error";
+
     private String expression;
     private Stack<Double> stackExpression;
 
@@ -58,7 +60,7 @@ public class RPNExpression {
 
 
                     } catch (EmptyStackException e) {
-                        return "Syntax Error";
+                        return SYNTAX_ERROR;
                     }
 
                 } else {
@@ -66,7 +68,7 @@ public class RPNExpression {
                         Double num = Double.parseDouble(s);
                         stackExpression.push(num);
                     } catch (NumberFormatException ex) {
-                        return "Syntax Error";
+                        return SYNTAX_ERROR;
                     }
                 }
 

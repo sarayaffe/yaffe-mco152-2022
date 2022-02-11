@@ -36,7 +36,7 @@ class RPNExpressionTest {
 
         //when
         String result = rpn.evaluate();
-        String result2 = rpn.evaluate();
+        String result2 = rpn2.evaluate();
 
         //then
         assertEquals("Syntax Error", result);
@@ -45,7 +45,7 @@ class RPNExpressionTest {
     }
 
     @Test
-    public void evaluateDB0() {
+    public void evaluateDivideBy0() {
         //given
         RPNExpression rpn = new RPNExpression("5 0 /");
 
@@ -67,9 +67,4 @@ class RPNExpressionTest {
         //then
         assertEquals("2.00\nextra junk ignored", result);
     }
-
-
-
-
-
 }
