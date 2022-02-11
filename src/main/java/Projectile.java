@@ -17,7 +17,7 @@ public class Projectile {
 
     public double getY(double time)
     {
-        return velocity * time * Math.cos(Math.toRadians(angleInDegrees)) - .5 * GRAVITY * Math.pow(time, 2);
+        return velocity * time * Math.sin(Math.toRadians(angleInDegrees)) - .5 * GRAVITY * Math.pow(time, 2);
 
     }
 
