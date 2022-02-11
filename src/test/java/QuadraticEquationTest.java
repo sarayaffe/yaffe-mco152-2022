@@ -23,10 +23,10 @@ class QuadraticEquationTest {
 
         //when
         double[] x = qe.getX();
-        Boolean isNaN = Double.isNaN(x[0]);
 
         //then
-        assertEquals(isNaN, true);
+        boolean isNaN = Double.isNaN(x[0]);
+        assertTrue(isNaN);
     }
 
     @Test
