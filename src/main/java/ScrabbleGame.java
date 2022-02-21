@@ -22,7 +22,7 @@ public class ScrabbleGame {
         while (true) {
             System.out.println("Enter word with given letters or 'exit' to end game\n" + tiles);
             String word = scanner.nextLine();
-            if (word.toLowerCase().equals("exit")) {
+            if (word.equalsIgnoreCase("exit")) {
                 System.exit(0);
             } else if (!playWord(word)) {
                 System.out.println("invalid word. try again: ");
@@ -37,7 +37,6 @@ public class ScrabbleGame {
      *
      * @param word
      */
-
     public boolean playWord(String word) {
         char[] wordLetters = word.toCharArray();
 
@@ -48,7 +47,7 @@ public class ScrabbleGame {
                     if (wordLetters[i] == (tiles.get(j))) {
                         tiles.remove(tiles.get(j));
                         tiles.add((char) (rnd.nextInt(26) + 'a'));
-                        j = tiles.size(); //if duplicate in tiles list, only remove one per i
+                        break;
                     }
                 }
             }
@@ -65,7 +64,7 @@ public class ScrabbleGame {
                 for (int i = 0; i < tilesCopy.size(); i++) {
                     if (letter == tilesCopy.get(i)) {
                         tilesCopy.remove(tilesCopy.get(i));
-                        i = tilesCopy.size();//ensures that a word with more than one letter is only valid if contained in tiles
+                        break;
                     }
                 }
             else
