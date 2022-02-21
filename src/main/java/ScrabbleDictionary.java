@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class ScrabbleDictionary {

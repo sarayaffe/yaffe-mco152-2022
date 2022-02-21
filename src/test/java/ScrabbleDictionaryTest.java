@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ScrabbleDictionaryTest {
 
     @Test
-    public void isword_fragment() {
+    public void isWord_fragment() {
         //given
        ScrabbleDictionary dictionary = new ScrabbleDictionary();
 
@@ -16,7 +16,7 @@ class ScrabbleDictionaryTest {
     }
 
     @Test
-    public void isword_false() {
+    public void isWord_false() {
         //given
         ScrabbleDictionary dictionary = new ScrabbleDictionary();
 
@@ -27,7 +27,7 @@ class ScrabbleDictionaryTest {
     }
 
     @Test
-    public void isword_true() {
+    public void isWord_true() {
         //given
         ScrabbleDictionary dictionary = new ScrabbleDictionary();
 
