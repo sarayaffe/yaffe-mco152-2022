@@ -41,7 +41,10 @@ public class ScrabbleGame {
         char[] wordLetters = word.toCharArray();
 
         if (dictionary.isWord(word) && !playedWords.contains(word) && isWordInTiles(wordLetters)) {
-            modifyLists(word);
+            playedWords.add(word);
+            for (int i = 0; i < word.length(); i++) {
+                tiles.add((char) (rnd.nextInt(26) + 'a'));
+            }
             return true;
         }
         return false;
@@ -61,10 +64,4 @@ public class ScrabbleGame {
         return true;
     }
 
-    private void modifyLists(String word) {
-        playedWords.add(word);
-        for (int i = 0; i < word.length(); i++) {
-            tiles.add((char) (rnd.nextInt(26) + 'a'));
-        }
-    }
 }
