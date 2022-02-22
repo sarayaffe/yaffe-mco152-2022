@@ -21,7 +21,7 @@ public class ScrabbleGame {
     public void playGame(Scanner scanner) {
         while (true) {
             System.out.println("Enter word with given letters or 'exit' to end game\n" + tiles);
-            String word = scanner.nextLine();
+            String word = scanner.nextLine().toLowerCase();
             if (word.equalsIgnoreCase("exit")) {
                 System.exit(0);
             } else if (!playWord(word)) {
@@ -42,14 +42,11 @@ public class ScrabbleGame {
 
         if (dictionary.isWord(word) && !playedWords.contains(word) && isWordInTiles(wordLetters)) {
             playedWords.add(word);
+            while (tiles.contains('0')) {
+                tiles.remove(Character.valueOf('0'));
+            }
             for (int i = 0; i < word.length(); i++) {
-                for (int j = 0; j < tiles.size(); j++) {
-                    if (wordLetters[i] == (tiles.get(j))) {
-                        tiles.remove(tiles.get(j));
-                        tiles.add((char) (rnd.nextInt(26) + 'a'));
-                        break;
-                    }
-                }
+                tiles.add((char) (rnd.nextInt(26) + 'a'));
             }
             return true;
         }
@@ -60,15 +57,12 @@ public class ScrabbleGame {
         List<Character> tilesCopy = new ArrayList<>(tiles);
 
         for (char letter : wordLetters) {
-            if (tilesCopy.contains(letter))
-                for (int i = 0; i < tilesCopy.size(); i++) {
-                    if (letter == tilesCopy.get(i)) {
-                        tilesCopy.remove(tilesCopy.get(i));
-                        break;
-                    }
-                }
-            else
+            if (tiles.contains(letter)) {
+                tiles.set(tiles.indexOf(letter), '0');
+            } else {
+                tiles = tilesCopy;
                 return false;
+            }
         }
         return true;
     }
