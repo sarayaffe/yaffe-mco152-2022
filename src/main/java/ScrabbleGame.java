@@ -41,13 +41,7 @@ public class ScrabbleGame {
         char[] wordLetters = word.toCharArray();
 
         if (dictionary.isWord(word) && !playedWords.contains(word) && isWordInTiles(wordLetters)) {
-            playedWords.add(word);
-            while (tiles.contains('0')) {
-                tiles.remove(Character.valueOf('0'));
-            }
-            for (int i = 0; i < word.length(); i++) {
-                tiles.add((char) (rnd.nextInt(26) + 'a'));
-            }
+            modifyLists(word);
             return true;
         }
         return false;
@@ -58,12 +52,19 @@ public class ScrabbleGame {
 
         for (char letter : wordLetters) {
             if (tiles.contains(letter)) {
-                tiles.set(tiles.indexOf(letter), '0');
+                tiles.remove(Character.valueOf(letter));
             } else {
                 tiles = tilesCopy;
                 return false;
             }
         }
         return true;
+    }
+
+    private void modifyLists(String word) {
+        playedWords.add(word);
+        for (int i = 0; i < word.length(); i++) {
+            tiles.add((char) (rnd.nextInt(26) + 'a'));
+        }
     }
 }
