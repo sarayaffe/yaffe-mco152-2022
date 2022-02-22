@@ -37,7 +37,7 @@ public class ScrabbleGame {
      *
      * @param word
      */
-    public boolean playWord(String word) {
+    private boolean playWord(String word) {
         char[] wordLetters = word.toCharArray();
 
         if (dictionary.isWord(word) && !playedWords.contains(word) && isWordInTiles(wordLetters)) {
