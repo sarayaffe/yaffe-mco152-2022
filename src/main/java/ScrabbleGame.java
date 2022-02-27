@@ -26,7 +26,7 @@ public class ScrabbleGame {
         while (true) {
             System.out.println("Enter word with given letters or 'exit' to end game\n" + tiles);
             String word = scanner.nextLine().toUpperCase();
-            if (word.equalsIgnoreCase("exit")) {
+            if (word.equals("EXIT")) {
                 System.exit(0);
             } else if (!playWord(word)) {
                 System.out.println("invalid word. try again: ");
@@ -62,12 +62,6 @@ public class ScrabbleGame {
                 tiles = tilesCopy;
                 return false;
             }
-//            (tiles.contains(letter)) {
-//                tiles.remove(Character.valueOf(letter));
-//            } else {
-//                tiles = tilesCopy;
-//                return false;
-//            }
         }
         return true;
     }
