@@ -26,19 +26,6 @@ public class ScrabbleGame
     }
 
 
-    public boolean playGame(Scanner scanner)
-    {
-        System.out.println("Enter word with given letters or 'exit' to end game\n" + tiles);
-        String word = scanner.nextLine().toUpperCase();
-        if (word.equals("EXIT"))
-        {
-            System.exit(0);
-        }
-
-        return playWord(word);
-
-    }
-
     /**
      * If the word exists in the ScrabbleDictionary, the letters exist in the tiles List,
      * and playedWords does not yet contain the word,

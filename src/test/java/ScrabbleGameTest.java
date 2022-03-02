@@ -10,36 +10,6 @@ class ScrabbleGameTest {
     LetterPool letterPool = Mockito.mock(LetterPool.class);
 
     @Test
-    public void playGame_returnTrue() {
-        //given
-        Mockito.doReturn(true).when(dictionary).isWord("HELLO");
-        Mockito.doReturn('A', 'H', 'E', 'L', 'L', 'O', 'G').when(letterPool).getRandomLetter();
-        ScrabbleGame game = new ScrabbleGame(dictionary, letterPool);
-        Scanner scanner = new Scanner("hello");
-
-        //when
-
-        //then
-        assertTrue(game.playGame(scanner));
-
-    }
-
-    @Test
-    public void playGame_returnFalse() {
-        //given
-        Mockito.doReturn(false).when(dictionary).isWord("HELLO");
-        Mockito.doReturn('A', 'H', 'E', 'L', 'L', 'O', 'G').when(letterPool).getRandomLetter();
-        ScrabbleGame game = new ScrabbleGame(dictionary, letterPool);
-        Scanner scanner = new Scanner("hello");
-
-        //when
-
-        //then
-        assertFalse(game.playGame(scanner));
-
-    }
-
-    @Test
     public void playWord_true() {
         // given
         Mockito.doReturn(true).when(dictionary).isWord("HELLO");
