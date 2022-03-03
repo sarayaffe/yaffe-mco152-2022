@@ -6,7 +6,7 @@ public class ScrabbleFrame extends JFrame {
 
     public static final String WORD_NOT_IN_DICTIONARY = "Word not in dictionary";
     public static final String WORD_NOT_IN_TILES = "Word not in tiles";
-    
+
     private final JLabel scoreLabel;
     private int score = 0;
     private JLabel[] tiles;
