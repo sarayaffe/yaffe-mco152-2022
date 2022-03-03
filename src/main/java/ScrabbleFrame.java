@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 
 public class ScrabbleFrame extends JFrame {
 
+    public static final String WORD_NOT_IN_DICTIONARY = "Word not in dictionary";
+    public static final String WORD_NOT_IN_TILES = "Word not in tiles";
+    
     private final JLabel scoreLabel;
     private int score = 0;
     private JLabel[] tiles;
@@ -14,6 +17,7 @@ public class ScrabbleFrame extends JFrame {
     private JPanel verticalPanel;
 
     private ScrabbleGame scrabbleGame;
+    private ScrabbleDictionary dictionary;
 
     public ScrabbleFrame() {
         setTitle("Touro Scrabble");
@@ -22,7 +26,7 @@ public class ScrabbleFrame extends JFrame {
 
         setLayout(new FlowLayout());
 
-        ScrabbleDictionary dictionary = new ScrabbleDictionary();
+        dictionary = new ScrabbleDictionary();
         LetterPool letterPool = new LetterPool();
         scrabbleGame = new ScrabbleGame(dictionary, letterPool);
 
@@ -32,7 +36,7 @@ public class ScrabbleFrame extends JFrame {
 
         addTilesPanel(verticalPanel);
 
-        inputField = new JTextField("TEXT");
+        inputField = new JTextField();
         inputField.setPreferredSize(new Dimension(120, 60));
         verticalPanel.add(inputField);
 
@@ -41,7 +45,7 @@ public class ScrabbleFrame extends JFrame {
         verticalPanel.add(submitButton);
 
 
-        scoreLabel = new JLabel("Score: ");
+        scoreLabel = new JLabel("Score: 0");
         verticalPanel.add(scoreLabel);
 
         outputLabel = new JLabel("Output: ");
@@ -64,14 +68,20 @@ public class ScrabbleFrame extends JFrame {
 
     public void onSubmitClicked(ActionEvent event) {
         String word = inputField.getText();
-        if(scrabbleGame.playWord(word)){
+        if (scrabbleGame.playWord(word)) {
             score++;
-            scoreLabel.setText(String.valueOf(score));
+            scoreLabel.setText("Score: " + score);
 
             for (int i = 0; i < tiles.length; i++) {
                 tiles[i].setText(scrabbleGame.tiles.get(i).toString());
             }
 
+        } else {
+            if (!dictionary.isWord(word)) {
+                outputLabel.setText(WORD_NOT_IN_DICTIONARY);
+            } else {
+                outputLabel.setText(WORD_NOT_IN_TILES);
+            }
         }
     }
 
