@@ -1,10 +1,10 @@
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class RPNFrame extends JFrame {
 
-    private JLabel promptLabel;
     private JTextField expressionText;
     private JButton submitButton;
     private JLabel resultLabel;
@@ -21,22 +21,24 @@ public class RPNFrame extends JFrame {
         setLayout(new FlowLayout());
 
         verticalPanel = new JPanel();
-        verticalPanel.setLayout(new BoxLayout(verticalPanel, BoxLayout.Y_AXIS));
+        verticalPanel.setLayout(new BorderLayout(20, 20));
         add(verticalPanel);
 
-        promptLabel = new JLabel("Enter RPN Expression");
-        verticalPanel.add(promptLabel);
-
         expressionText =  new JTextField();
-        expressionText.setPreferredSize(new Dimension(120, 40));
-        verticalPanel.add(expressionText);
+        expressionText.setHorizontalAlignment(JTextField.CENTER);
+        expressionText.setPreferredSize(new Dimension(170, 60));
+        TitledBorder promptBorder = BorderFactory.createTitledBorder("Enter RPN Expression");
+        promptBorder.setTitleJustification(TitledBorder.CENTER);
+        expressionText.setBorder(promptBorder);
+        verticalPanel.add(expressionText, BorderLayout.NORTH);
 
         submitButton = new JButton("CALCULATE");
         submitButton.addActionListener(this::onSubmitClick);
-        verticalPanel.add(submitButton);
+        verticalPanel.add(submitButton, BorderLayout.CENTER);
 
-        resultLabel = new JLabel();
-        verticalPanel.add(resultLabel);
+        resultLabel = new JLabel("RESULT:");
+        resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        verticalPanel.add(resultLabel, BorderLayout.SOUTH);
     }
 
     public void onSubmitClick(ActionEvent e){
@@ -48,7 +50,6 @@ public class RPNFrame extends JFrame {
 
     public static void main(String[] args) {
         JFrame frame = new RPNFrame();
-
         frame.setVisible(true);
     }
 
