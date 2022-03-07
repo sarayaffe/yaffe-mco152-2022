@@ -11,7 +11,7 @@ public class RPNExpression {
 
     public static final String SYNTAX_ERROR = "Syntax Error";
     public static final String NO_EXPRESSION_GIVEN = "no expression given";
-    public static final String EXTRA_JUNK_IGNORED = "\nextra junk ignored";
+    public static final String EXTRA_JUNK_IGNORED = "\n extra junk ignored";
     public static final String CANNOT_DIVIDE_BY_ZERO = "cannot divide by zero";
 
     private String expression;
