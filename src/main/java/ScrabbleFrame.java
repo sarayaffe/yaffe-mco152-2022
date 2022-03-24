@@ -1,23 +1,21 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class ScrabbleFrame extends JFrame {
+
+    private ScrabblePresenter presenter;
 
     public static final String WORD_NOT_IN_DICTIONARY = "Word not in dictionary";
     public static final String WORD_NOT_IN_TILES = "Word not in tiles";
 
     private final JLabel scoreLabel;
-    private int score = 0;
     private JLabel[] tiles;
     private final JTextField inputField;
     private final JButton submitButton;
     private final JLabel outputLabel;
-
     private JPanel verticalPanel;
-
-    private ScrabbleGame scrabbleGame;
-    private ScrabbleDictionary dictionary;
 
     public ScrabbleFrame() {
         setTitle("Touro Scrabble");
@@ -26,9 +24,11 @@ public class ScrabbleFrame extends JFrame {
 
         setLayout(new FlowLayout());
 
-        dictionary = new ScrabbleDictionary();
+        ScrabbleDictionary dictionary = new ScrabbleDictionary();
         LetterPool letterPool = new LetterPool();
-        scrabbleGame = new ScrabbleGame(dictionary, letterPool);
+        ScrabbleGame scrabbleGame = new ScrabbleGame(dictionary, letterPool);
+
+        presenter = new ScrabblePresenter(this, scrabbleGame);
 
         verticalPanel = new JPanel();
         verticalPanel.setLayout(new BoxLayout(verticalPanel, BoxLayout.Y_AXIS));
@@ -59,29 +59,29 @@ public class ScrabbleFrame extends JFrame {
         tilesPanel.setLayout(new FlowLayout());
         tiles = new JLabel[7];
         for (int i = 0; i < tiles.length; i++) {
-            tiles[i] = new JLabel(scrabbleGame.tiles.get(i).toString());
+            tiles[i] = new JLabel();
             tilesPanel.add(tiles[i]);
         }
 
         verticalPanel.add(tilesPanel);
+
+        presenter.fillTiles();
     }
 
     public void onSubmitClicked(ActionEvent event) {
+
         String word = inputField.getText();
-        if (scrabbleGame.playWord(word)) {
-            score++;
-            scoreLabel.setText("Score: " + score);
+        presenter.playWord(word);
 
-            for (int i = 0; i < tiles.length; i++) {
-                tiles[i].setText(scrabbleGame.tiles.get(i).toString());
-            }
+    }
 
-        } else {
-            if (!dictionary.isWord(word)) {
-                outputLabel.setText(WORD_NOT_IN_DICTIONARY);
-            } else {
-                outputLabel.setText(WORD_NOT_IN_TILES);
-            }
+    public void setScore(String score) {
+        scoreLabel.setText("Score: " + score);
+    }
+
+    public void setTiles(List<Character> tilesList){
+        for (int i = 0; i < tilesList.size(); i++) {
+            tiles[i].setText(tilesList.get(i).toString());
         }
     }
 
@@ -90,6 +90,7 @@ public class ScrabbleFrame extends JFrame {
 
         frame.setVisible(true);
     }
+
 
 
 }

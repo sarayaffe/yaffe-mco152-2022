@@ -64,4 +64,7 @@ public class ScrabbleGame
         }
         return true;
     }
+    public List<Character> getTiles() {
+        return tiles;
+    }
 }
