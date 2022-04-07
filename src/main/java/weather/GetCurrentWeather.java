@@ -15,7 +15,7 @@ import java.net.URL;
 
 public class GetCurrentWeather {
 
-    double getTemperature() throws IOException {
+    CurrentWeather getCurrentWeather() throws IOException {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://samples.openweathermap.org")
@@ -28,7 +28,7 @@ public class GetCurrentWeather {
                 .execute()
                 .body();
 
-        return currentWeather.getTemperature();
+        return currentWeather;
     }
 
 }
