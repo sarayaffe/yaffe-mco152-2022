@@ -3,7 +3,7 @@ package weather.json;
 public class CurrentWeather {
 
     Main main;
-    Weather weather[];
+    Weather[] weather;
 
     public double getTemperature() {
         return main.temp;
