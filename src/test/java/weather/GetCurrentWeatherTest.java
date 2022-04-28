@@ -14,7 +14,7 @@ class GetCurrentWeatherTest {
         GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
 
         //when
-        CurrentWeather currentWeather = getCurrentWeather.getCurrentWeather();
+        CurrentWeather currentWeather = getCurrentWeather.getCurrentWeather("11213");
 
         //then
         assertTrue(currentWeather.getTemperature() > 0);
