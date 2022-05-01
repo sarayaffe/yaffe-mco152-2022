@@ -14,7 +14,7 @@ public class CurrentWeatherFrame extends JFrame {
 
     private JTextField zipField;
     private JButton submitButton;
-    private JLabel weatherLabel;
+    private JLabel tempLabel;
 
     private GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
 
@@ -25,48 +25,35 @@ public class CurrentWeatherFrame extends JFrame {
 
         setLayout(new FlowLayout());
 
-        zipField = new JTextField("00000");
+        zipField = new JTextField();
+        zipField.setPreferredSize(new Dimension(50, 20));
         add(zipField);
 
         submitButton = new JButton("Submit");
         submitButton.addActionListener(this::onSubmitClick);
         add(submitButton);
 
-        weatherLabel = new JLabel();
-        add(weatherLabel);
+        tempLabel = new JLabel();
+        add(tempLabel);
     }
 
     public void onSubmitClick(ActionEvent e) {
         Observable<CurrentWeather> observable = getCurrentWeather.getCurrentWeather(zipField.getText());
 
         Disposable disposable = observable
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())         //do this request in background
+                .observeOn(Schedulers.newThread())    //run onNext in new thread
                 .subscribe(this::onNext, this::onError);
     }
 
     public void onNext(CurrentWeather currentWeather){
         double fahrenheit = currentWeather.getTemperature();
-        weatherLabel.setText(String.valueOf(fahrenheit));
+        tempLabel.setText(String.valueOf(fahrenheit));
     }
 
     public void onError(Throwable throwable) {
         throwable.printStackTrace();
     }
-/*        String zipcode = zipInput.getText();
-        GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
-
-        try {
-            CurrentWeather currWeather = getCurrentWeather.getCurrentWeather(zipcode);
-            double temp = currWeather.getTemperature();
-            double fahrenheit = (temp - 273.15) * 9/5 + 32;
-
-            tempF.setText(fahrenheit + "");
-        }
-        catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }*/
 
     public static void main(String[] args) {
         JFrame frame = new CurrentWeatherFrame();

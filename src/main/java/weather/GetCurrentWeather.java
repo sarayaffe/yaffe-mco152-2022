@@ -7,12 +7,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import weather.json.CurrentWeather;
 import weather.json.OpenWeatherMapService;
 
-import java.io.IOException;
-
 
 public class GetCurrentWeather {
 
     private final OpenWeatherMapService service;
+
     public GetCurrentWeather() {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -24,13 +23,10 @@ public class GetCurrentWeather {
         service = retrofit.create(OpenWeatherMapService.class);
     }
 
-        /*
-        * @return current temp in Kelvin
-        * */
-    public Observable<CurrentWeather> getCurrentWeather(String zipcode){
-        Observable<CurrentWeather> observable = service.getCurrentWeather(zipcode);
 
-        return observable;
+    public Observable<CurrentWeather> getCurrentWeather(String zipcode){
+
+        return service.getCurrentWeather(zipcode);
 
     }
 
