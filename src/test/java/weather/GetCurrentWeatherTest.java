@@ -9,14 +9,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GetCurrentWeatherTest {
 
+    GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
+    Observable<CurrentWeather> observable = getCurrentWeather.getCurrentWeather("01106");
+    CurrentWeather currentWeather = observable.blockingFirst();
+
     @Test
     void getCurrentWeather() throws IOException{
         //given
-        GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
 
         //when
-        Observable<CurrentWeather> observable = getCurrentWeather.getCurrentWeather("01106");
-        CurrentWeather currentWeather = observable.blockingFirst();
 
         //then
         assertTrue(currentWeather.getTemperature() > 0);
@@ -24,6 +25,19 @@ class GetCurrentWeatherTest {
         assertTrue(currentWeather.getMinTemperature() > 0);
         assertNotNull(currentWeather.getDescription());
         assertNotNull(currentWeather.getIcon());
+
+    }
+
+    @Test
+    void onNext(){
+        //given
+        CurrentWeatherFrame currentWeatherFrame = new CurrentWeatherFrame();
+
+        //when
+        currentWeatherFrame.onNext(currentWeather);
+
+        //then
+        assertEquals(String.valueOf(currentWeather.getTemperature()), currentWeatherFrame.tempLabel.getText());
 
     }
 

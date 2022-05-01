@@ -14,7 +14,7 @@ public class CurrentWeatherFrame extends JFrame {
 
     private JTextField zipField;
     private JButton submitButton;
-    private JLabel tempLabel;
+    JLabel tempLabel;
 
     private GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
 
