@@ -14,7 +14,7 @@ class GetCurrentWeatherTest {
     CurrentWeather currentWeather = observable.blockingFirst();
 
     @Test
-    void getCurrentWeather() throws IOException{
+    void getCurrentWeather(){
         //given
 
         //when
