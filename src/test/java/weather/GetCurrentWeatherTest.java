@@ -1,5 +1,6 @@
 package weather;
 
+import io.reactivex.Observable;
 import org.junit.jupiter.api.Test;
 import weather.json.CurrentWeather;
 
@@ -14,7 +15,8 @@ class GetCurrentWeatherTest {
         GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
 
         //when
-        CurrentWeather currentWeather = getCurrentWeather.getCurrentWeather("11213");
+        Observable<CurrentWeather> observable = getCurrentWeather.getCurrentWeather("01106");
+        CurrentWeather currentWeather = observable.blockingFirst();
 
         //then
         assertTrue(currentWeather.getTemperature() > 0);
