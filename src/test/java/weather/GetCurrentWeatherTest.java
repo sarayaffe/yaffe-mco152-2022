@@ -7,15 +7,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GetCurrentWeatherTest {
 
-    GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
 
     @Test
     void getCurrentWeather(){
         //given
+        GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
 
         //when
-        Observable<CurrentWeather> weatherObservable = getCurrentWeather.getCurrentWeather("01106");
-        CurrentWeather currentWeather = weatherObservable.blockingFirst();
+        CurrentWeather currentWeather = getCurrentWeather.getCurrentWeather("01106")
+                .blockingFirst();
 
         //then
         assertTrue(currentWeather.getTemperature() > 0);

@@ -12,13 +12,16 @@ import java.awt.event.ActionEvent;
 
 public class CurrentWeatherFrame extends JFrame {
 
-    private JTextField zipField;
-    private JButton submitButton;
+    private final JTextField zipField;
+    private final JButton submitButton;
     JLabel tempLabel;
 
     private GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
+    private final CurrentWeatherPresenter presenter;
 
     public CurrentWeatherFrame(){
+        presenter = new CurrentWeatherPresenter(this, getCurrentWeather);
+
         setTitle("Current Weather");
         setSize(300,200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,21 +41,15 @@ public class CurrentWeatherFrame extends JFrame {
     }
 
     public void onSubmitClick(ActionEvent e) {
-        Observable<CurrentWeather> observable = getCurrentWeather.getCurrentWeather(zipField.getText());
-
-        Disposable disposable = observable
-                .subscribeOn(Schedulers.io())         //do this request in background
-                .observeOn(Schedulers.newThread())    //run onNext in new thread
-                .subscribe(this::onNext, this::onError);
+        presenter.loadWeatherFromZipcode(zipField.getText());
     }
 
-    public void onNext(CurrentWeather currentWeather){
-        double fahrenheit = currentWeather.getTemperature();
+    public void setTemp(double fahrenheit) {
         tempLabel.setText(String.valueOf(fahrenheit));
     }
 
-    public void onError(Throwable throwable) {
-        throwable.printStackTrace();
+    public void showError(){
+
     }
 
     public static void main(String[] args) {
