@@ -19,9 +19,7 @@ public class CurrentWeatherPresenter {
     }
 
     public void loadWeatherFromZipcode(String zipcode){
-
-        //observable - observe result of
-        // disposable - cancel call if not needed
+        Observable<CurrentWeather> observable = model.getCurrentWeather(zipcode);
 
         disposable = model.getCurrentWeather(zipcode)
                 .subscribeOn(Schedulers.io())         //do this request in background

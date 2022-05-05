@@ -15,7 +15,7 @@ public class GetCurrentWeather {
     public GetCurrentWeather() {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://samples.openweathermap.org")
+                .baseUrl("https://api.openweathermap.org")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();

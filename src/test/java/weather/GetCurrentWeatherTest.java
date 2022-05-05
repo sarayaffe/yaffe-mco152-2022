@@ -26,18 +26,4 @@ class GetCurrentWeatherTest {
 
     }
 
-//    @Test
-//    void onNext(){
-//        //given
-//        CurrentWeatherFrame currentWeatherFrame = new CurrentWeatherFrame();
-//
-//        //when
-//        currentWeatherFrame.onNext(currentWeather);
-//
-//        //then
-//        assertEquals(String.valueOf(currentWeather.getTemperature()), currentWeatherFrame.tempLabel.getText());
-//
-//    }
-
-
 }
