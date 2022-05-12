@@ -4,6 +4,8 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import weather.json.CurrentWeather;
+import weather.json.OpenWeatherMapService;
+import weather.json.OpenWeatherMapServiceFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,11 +18,9 @@ public class CurrentWeatherFrame extends JFrame {
     private final JButton submitButton;
     private final JLabel tempLabel;
 
-    private GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
     private final CurrentWeatherPresenter presenter;
 
     public CurrentWeatherFrame(){
-        presenter = new CurrentWeatherPresenter(this, getCurrentWeather);
 
         setTitle("Current Weather");
         setSize(300,200);
@@ -38,6 +38,9 @@ public class CurrentWeatherFrame extends JFrame {
 
         tempLabel = new JLabel();
         add(tempLabel);
+
+        OpenWeatherMapServiceFactory factory = new OpenWeatherMapServiceFactory();
+        presenter = new CurrentWeatherPresenter(this, factory.getInstance());
     }
 
     public void onSubmitClick(ActionEvent e) {
