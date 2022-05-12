@@ -5,6 +5,8 @@ import java.awt.*;
 
 public class TemperatureSign extends JComponent {
 
+    public static final int CAR_WIDTH = 20;
+    public static final int CAR_HEIGHT = 60;
     private double temperature;
     private double angle = 0;
 
@@ -33,10 +35,14 @@ public class TemperatureSign extends JComponent {
         g.drawOval(0, 0, width, height);
 
         g.setColor(Color.RED);
+
+        //move origin
         g.translate(width / 2, height / 2);
+
         g.rotate(Math.toRadians(angle));
         angle+= 0.1;
-        g.fillRect( - 20 / 2,  - 60 / 2, 20, 60);
+
+        g.fillRect( -CAR_WIDTH / 2,  -CAR_HEIGHT / 2, 20, 60);
 
         repaint();
 
