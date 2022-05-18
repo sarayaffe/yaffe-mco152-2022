@@ -7,8 +7,6 @@ import io.reactivex.schedulers.Schedulers;
 import weather.json.CurrentWeather;
 import weather.json.OpenWeatherMapService;
 
-import javax.swing.*;
-
 public class CurrentWeatherPresenter {
 
     private final CurrentWeatherFrame view;

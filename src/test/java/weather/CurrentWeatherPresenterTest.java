@@ -1,6 +1,4 @@
 package weather;
-
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
@@ -10,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import weather.json.CurrentWeather;
 import weather.json.OpenWeatherMapService;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class CurrentWeatherPresenterTest {
