@@ -4,6 +4,7 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import weather.json.CurrentWeather;
+import weather.json.TemperatureSign;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,12 +16,12 @@ public class CurrentWeatherFrame extends JFrame {
     private final JTextField zipField;
     private final JButton submitButton;
     private final JLabel tempLabel;
+    private final TemperatureSign temperatureSign;
 
     private GetCurrentWeather getCurrentWeather = new GetCurrentWeather();
     private final CurrentWeatherPresenter presenter;
 
     public CurrentWeatherFrame(){
-        presenter = new CurrentWeatherPresenter(this, getCurrentWeather);
 
         setTitle("Current Weather");
         setSize(300,200);
@@ -38,6 +39,12 @@ public class CurrentWeatherFrame extends JFrame {
 
         tempLabel = new JLabel();
         add(tempLabel);
+
+        temperatureSign = new TemperatureSign();
+        add(temperatureSign);
+
+        presenter = new CurrentWeatherPresenter(this, new GetCurrentWeather());
+
     }
 
     public void onSubmitClick(ActionEvent e) {
@@ -46,6 +53,7 @@ public class CurrentWeatherFrame extends JFrame {
 
     public void setTemp(double fahrenheit) {
         tempLabel.setText(String.valueOf(fahrenheit));
+        temperatureSign.setTemperature(fahrenheit);
     }
 
     public void showError(){
