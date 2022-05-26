@@ -4,8 +4,12 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import weather.json.CurrentWeather;
+
 import weather.json.OpenWeatherMapService;
 import weather.json.OpenWeatherMapServiceFactory;
+
+import weather.json.TemperatureSign;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,13 +21,14 @@ public class CurrentWeatherFrame extends JFrame {
     private final JTextField zipField;
     private final JButton submitButton;
     private final JLabel tempLabel;
+    private final TemperatureSign temperatureSign;
 
     private final CurrentWeatherPresenter presenter;
 
-    public CurrentWeatherFrame(){
+    public CurrentWeatherFrame() {
 
         setTitle("Current Weather");
-        setSize(300,200);
+        setSize(300, 200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setLayout(new FlowLayout());
@@ -41,6 +46,9 @@ public class CurrentWeatherFrame extends JFrame {
 
         OpenWeatherMapServiceFactory factory = new OpenWeatherMapServiceFactory();
         presenter = new CurrentWeatherPresenter(this, factory.getInstance());
+        temperatureSign = new TemperatureSign();
+        add(temperatureSign);
+
     }
 
     public void onSubmitClick(ActionEvent e) {
@@ -49,9 +57,10 @@ public class CurrentWeatherFrame extends JFrame {
 
     public void setTemp(double fahrenheit) {
         tempLabel.setText(String.valueOf(fahrenheit));
+        temperatureSign.setTemperature(fahrenheit);
     }
 
-    public void showError(){
+    public void showError() {
 
     }
 
