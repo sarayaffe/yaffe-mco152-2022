@@ -1,21 +1,17 @@
 package weather;
 
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import weather.json.CurrentWeather;
-
-import weather.json.OpenWeatherMapService;
-import weather.json.OpenWeatherMapServiceFactory;
-
+import weather.dagger.DaggerCurrentWeatherComponent;
 import weather.json.TemperatureSign;
 
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 
+@Singleton
 public class CurrentWeatherFrame extends JFrame {
 
     private final JTextField zipField;
@@ -25,7 +21,12 @@ public class CurrentWeatherFrame extends JFrame {
 
     private final CurrentWeatherPresenter presenter;
 
-    public CurrentWeatherFrame() {
+
+    @Inject
+    public CurrentWeatherFrame(CurrentWeatherPresenter presenter){
+
+        this.presenter = presenter;
+
 
         setTitle("Current Weather");
         setSize(300, 200);
@@ -44,8 +45,6 @@ public class CurrentWeatherFrame extends JFrame {
         tempLabel = new JLabel();
         add(tempLabel);
 
-        OpenWeatherMapServiceFactory factory = new OpenWeatherMapServiceFactory();
-        presenter = new CurrentWeatherPresenter(this, factory.getInstance());
         temperatureSign = new TemperatureSign();
         add(temperatureSign);
 
@@ -65,7 +64,9 @@ public class CurrentWeatherFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new CurrentWeatherFrame();
+        CurrentWeatherFrame frame = DaggerCurrentWeatherComponent.create()
+                .getCurrentWeatherFrame();
+
         frame.setVisible(true);
     }
 
