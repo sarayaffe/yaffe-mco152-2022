@@ -1,14 +1,13 @@
 package weather;
-
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import weather.json.CurrentWeather;
+import weather.json.OpenWeatherMapService;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class CurrentWeatherPresenterTest {
@@ -32,12 +31,12 @@ class CurrentWeatherPresenterTest {
     void loadWeatherFromZipcode(){
         //given
         CurrentWeatherFrame view = mock(CurrentWeatherFrame.class);
-        GetCurrentWeather model = mock(GetCurrentWeather.class);
+        OpenWeatherMapService model = mock(OpenWeatherMapService.class);
         CurrentWeatherPresenter presenter = new CurrentWeatherPresenter(view, model);
 
         CurrentWeather currentWeather = mock(CurrentWeather.class);
         doReturn(100.0).when(currentWeather).getTemperature();
-        doReturn(Observable.just(currentWeather))
+        doReturn(Single.just(currentWeather))
                 .when(model).getCurrentWeather("00000");
 
         //when
