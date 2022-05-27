@@ -1,4 +1,5 @@
 package weather;
+
 import io.reactivex.Single;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
@@ -8,32 +9,34 @@ import org.junit.jupiter.api.Test;
 import weather.json.CurrentWeather;
 import weather.json.OpenWeatherMapService;
 
+import javax.inject.Provider;
+
 import static org.mockito.Mockito.*;
 
 class CurrentWeatherPresenterTest {
 
-    public CurrentWeatherPresenterTest(){
+    public CurrentWeatherPresenterTest() {
     }
 
     @BeforeAll
-    static void beforeAllTests(){
+    static void beforeAllTests() {
         //runs before all tests in this class
         RxJavaPlugins.setIoSchedulerHandler(scheduler -> Schedulers.trampoline());
         RxJavaPlugins.setNewThreadSchedulerHandler(scheduler -> Schedulers.trampoline());
     }
 
     @BeforeEach
-    public void beforeEachTest(){
+    public void beforeEachTest() {
         //runs before each test
     }
 
     @Test
-    void loadWeatherFromZipcode(){
+    void loadWeatherFromZipcode() {
         //given
         CurrentWeatherFrame view = mock(CurrentWeatherFrame.class);
         OpenWeatherMapService model = mock(OpenWeatherMapService.class);
-        CurrentWeatherPresenter presenter = new CurrentWeatherPresenter(view, model);
-
+        Provider<CurrentWeatherFrame> viewProvider = () -> view;
+        CurrentWeatherPresenter presenter = new CurrentWeatherPresenter(viewProvider, model);
         CurrentWeather currentWeather = mock(CurrentWeather.class);
         doReturn(100.0).when(currentWeather).getTemperature();
         doReturn(Single.just(currentWeather))
