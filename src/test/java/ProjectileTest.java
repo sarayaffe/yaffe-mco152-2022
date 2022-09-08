@@ -1,13 +1,19 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProjectileTest {
 
     @Test
     public void getX() {
+
         //given
-        Projectile p = new Projectile(52, 17);
+        var p = new Projectile(52, 17);
 
         //when
         double x = p.getX(3); //39.3987
@@ -19,7 +25,7 @@ class ProjectileTest {
     @Test
     public void getY() {
         //given
-        Projectile p = new Projectile(52, 17);
+        var p = new Projectile(52, 17);
 
         //when
         double y = p.getY(3);
