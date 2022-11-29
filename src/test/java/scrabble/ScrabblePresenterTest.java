@@ -1,10 +1,14 @@
+package scrabble;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import scrabble.ScrabbleFrame;
+import scrabble.ScrabbleGame;
+import scrabble.ScrabblePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 

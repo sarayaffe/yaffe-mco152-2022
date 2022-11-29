@@ -1,4 +1,4 @@
-
+package scrabble;
 
 public class ScrabblePresenter {
 

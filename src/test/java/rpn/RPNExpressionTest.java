@@ -1,4 +1,8 @@
+package rpn;
+
 import org.junit.jupiter.api.Test;
+import rpn.RPNExpression;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RPNExpressionTest {

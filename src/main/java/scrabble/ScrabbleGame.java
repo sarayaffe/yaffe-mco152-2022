@@ -1,3 +1,7 @@
+package scrabble;
+
+import dictionary.ScrabbleDictionary;
+
 import java.util.*;
 
 public class ScrabbleGame
@@ -27,7 +31,7 @@ public class ScrabbleGame
 
 
     /**
-     * If the word exists in the ScrabbleDictionary, the letters exist in the tiles List,
+     * If the word exists in the dictionary.ScrabbleDictionary, the letters exist in the tiles List,
      * and playedWords does not yet contain the word,
      * remove the letters from the list and add new random letters.
      *

@@ -1,3 +1,6 @@
+package math;
+
+import math.QuadraticEquation;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

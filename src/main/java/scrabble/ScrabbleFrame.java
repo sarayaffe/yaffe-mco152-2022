@@ -1,3 +1,7 @@
+package scrabble;
+
+import dictionary.ScrabbleDictionary;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

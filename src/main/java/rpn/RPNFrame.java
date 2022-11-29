@@ -1,3 +1,5 @@
+package rpn;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;

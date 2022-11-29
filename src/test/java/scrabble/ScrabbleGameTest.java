@@ -1,7 +1,10 @@
+package scrabble;
+
+import dictionary.ScrabbleDictionary;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.util.Scanner;
+import scrabble.LetterPool;
+import scrabble.ScrabbleGame;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,3 +1,5 @@
+package math;
+
 public record Projectile(double angleInDegrees, double velocity) {
 
     private static final double GRAVITY = 9.8;
