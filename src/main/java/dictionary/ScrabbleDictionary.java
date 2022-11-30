@@ -9,9 +9,8 @@ public class ScrabbleDictionary {
     private HashMap<String, String> words = new HashMap<>();
 
     public ScrabbleDictionary() {
-        File file = new File("dictionary.txt");
-        try {
-            Scanner scanner = new Scanner(file);
+        try (InputStream inputStream = ScrabbleDictionary.class.getResourceAsStream("/dictionary.txt")){
+            Scanner scanner = new Scanner(inputStream);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] entry = line.split(" ", 2);
@@ -21,8 +20,7 @@ public class ScrabbleDictionary {
                     words.put(entry[0], entry[1]);
                 }
             }
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
